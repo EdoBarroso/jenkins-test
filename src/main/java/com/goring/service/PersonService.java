@@ -1,8 +1,8 @@
-package com.ekiras.service;
+package com.goring.service;
 
-import com.ekiras.dao.PersonDAO;
-import com.ekiras.domain.Person;
-import com.ekiras.repository.PersonRepository;
+import com.goring.dao.PersonDAO;
+import com.goring.domain.Person;
+import com.goring.repository.PersonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -28,6 +28,10 @@ public class PersonService {
 
     public Person save(Person person){
         return personRepository.save(person);
+    }
+
+    public void delete(Long id){
+        personRepository.delete(id);
     }
 
 }

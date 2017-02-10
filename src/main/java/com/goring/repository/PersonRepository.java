@@ -1,6 +1,6 @@
-package com.ekiras.repository;
+package com.goring.repository;
 
-import com.ekiras.domain.Person;
+import com.goring.domain.Person;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 

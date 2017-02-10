@@ -15,7 +15,7 @@
             <th>Name</th>
             <th>Email</th>
             <th>Mobile</th>
-            <th>Action</th>
+            <th>Actions</th>
         </tr>
         <tbody>
             <c:forEach items="${persons}" var="person" varStatus="itr">
@@ -24,7 +24,7 @@
                     <td>${person.name}</td>
                     <td>${person.email}</td>
                     <td>${person.mobile}</td>
-                    <td><a href="/person/edit/${person.id}" class="btn btn-warning">Edit</a> </td>
+                    <td><a href="/person/edit/${person.id}" class="btn btn-warning">Edit</a><a href="/person/delete/${person.id}" class="btn btn-warning">Delete</a> </td>
                 </tr>
             </c:forEach>
         </tbody>

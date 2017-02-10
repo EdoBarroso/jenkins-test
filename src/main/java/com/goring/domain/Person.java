@@ -1,4 +1,4 @@
-package com.ekiras.domain;
+package com.goring.domain;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

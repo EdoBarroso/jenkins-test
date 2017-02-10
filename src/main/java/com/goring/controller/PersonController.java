@@ -1,7 +1,7 @@
-package com.ekiras.controller;
+package com.goring.controller;
 
-import com.ekiras.domain.Person;
-import com.ekiras.service.PersonService;
+import com.goring.domain.Person;
+import com.goring.service.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,7 +23,6 @@ public class PersonController {
 
     @RequestMapping(value = {"/","index"})
     public String index(Model model){
-        System.out.println(personService.findAll());
         model.addAttribute("persons", personService.findAll());
         return "person/index";
     }
@@ -52,11 +51,10 @@ public class PersonController {
         return "redirect:index";
     }
 
-
-    @RequestMapping(value = "/test")
-    public String test(){
-        return " hello world";
+    @RequestMapping(value = "delete/{id}")
+    public String delete(@PathVariable Long id){
+        personService.delete(id);
+        return "redirect:/person/index";
     }
-
 
 }
