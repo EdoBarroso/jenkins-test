@@ -4,11 +4,11 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>Insert title here</title>
+    <title>CRUD App</title>
     <link type="text/css" href="/css/bootstrap.css" rel="stylesheet" />
 </head>
 <body>
-    <h2>List of Persons</h2>
+    <h2>List of People</h2>
     <table class="table table-bordered">
         <tr>
             <th>S.No</th>

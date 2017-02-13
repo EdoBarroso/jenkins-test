@@ -4,7 +4,7 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>Insert title here</title>
+    <title>CRUD App</title>
     <link type="text/css" href="/css/bootstrap.css" rel="stylesheet" />
 </head>
 <body>

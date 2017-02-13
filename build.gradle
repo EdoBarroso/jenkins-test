@@ -2,10 +2,12 @@ buildscript {
     repositories {
         maven { url "http://repo.spring.io/libs-milestone" }
         mavenCentral()
+        jcenter()
     }
     dependencies {
         classpath("org.springframework.boot:spring-boot-gradle-plugin:1.5.1.RELEASE") 
         classpath("io.spring.gradle:dependency-management-plugin")
+        classpath("org.jfrog.buildinfo:build-info-extractor-gradle:4+")
     }
 }
  
@@ -15,16 +17,57 @@ apply plugin: 'org.springframework.boot'
 apply plugin: 'io.spring.dependency-management'
 apply plugin: 'war'
 apply plugin: 'application'
- 
- 
-war {
-    baseName = 'springboot'
-    version = '0.0.1-SNAPSHOT'
-}
+apply plugin: "com.jfrog.artifactory"
+apply plugin: 'maven'
+apply plugin: "maven-publish"
 
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
 mainClassName = "com.goring.Application"
+group = "com.nisum"
+version = "1.0"
+
+war {
+    baseName = 'crud-app'
+    version = '1.0'
+}
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            from components.web
+            artifact(file('build/libs/crud-app-1.0.war'))
+            artifactId "crud-app"
+        }
+    }
+}
+
+artifactory {
+    contextUrl = "${artifactory_contextUrl}"   //The base Artifactory URL if not overridden by the publisher/resolver
+    publish {
+        repository {
+            repoKey = 'gradle-release-local'
+            username = "${artifactory_user}"
+            password = "${System.env.artifactory_password}"
+            maven = true
+            
+        }
+
+        defaults {
+            publications('mavenJava')
+            publishPom = false
+        }
+    }
+    resolve {
+        repository {
+            repoKey = 'gradle-release'
+            username = "${artifactory_user}"
+            password = "${System.env.artifactory_password}"
+            maven = true
+            
+        }
+    }
+}
  
 repositories {
     mavenCentral()
@@ -34,7 +77,7 @@ repositories {
 configurations {
     providedRuntime
 }
- 
+
 dependencies {
     compile("org.springframework.boot:spring-boot-starter-data-jpa")
     compile("javax.servlet:jstl:1.2")
@@ -44,6 +87,6 @@ dependencies {
     providedRuntime("org.springframework.boot:spring-boot-starter-tomcat")
     providedRuntime 'org.apache.tomcat.embed:tomcat-embed-jasper'
     testCompile("junit:junit")
-    testCompile("org.mockito:mockito")
+    testCompile("org.mockito:mockito-core:1.+")
     testCompile("org.springframework:spring-test")
 }
