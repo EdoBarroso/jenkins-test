@@ -8,7 +8,8 @@ buildscript {
         classpath("org.springframework.boot:spring-boot-gradle-plugin:1.5.1.RELEASE") 
         classpath("io.spring.gradle:dependency-management-plugin")
         classpath("org.jfrog.buildinfo:build-info-extractor-gradle:4+")
-        classpath('com.bmuschko:gradle-docker-plugin:3.0.5')
+        classpath("com.bmuschko:gradle-docker-plugin:3.0.5")
+        classpath("org.sonarsource.scanner.gradle:sonarqube-gradle-plugin:2.2.1")
     }
 }
  
@@ -21,6 +22,7 @@ apply plugin: 'application'
 apply plugin: "com.jfrog.artifactory"
 apply plugin: 'maven'
 apply plugin: "maven-publish"
+apply plugin: "org.sonarqube"
 
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
